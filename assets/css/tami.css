@@ -1,0 +1,7 @@
+.garis{
+	width:70px;
+	height:10px;
+	margin-left:15%;
+	margin-right:15%;
+	background-image: linear-gradient(to right top, #f05050, #f05050, #f05050, #f05050, #f05050);
+}
