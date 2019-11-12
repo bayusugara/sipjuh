@@ -49,8 +49,8 @@ class DataPenggunaController extends CI_Controller {
 	}
 
 	public function hapus_data($username) {
-		$username = array('username' => $username);
-		$this->ModelPengguna->hapus_data($username, 'pengguna');
+		//$username = array('username' => $username);
+		$this->ModelPengguna->hapus_data(['username' => $username], 'pengguna');
 
 		redirect('DataPenggunaController');
 	}

@@ -18,7 +18,7 @@
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th><center>NO</center></th>
+                            <th><center>No.</center></th>
                             <th><center>Username</center></th>
                             <th><center>Password</center></th>
                             <th><center>Nama</center></th>
@@ -35,7 +35,10 @@
                                 <td><?php echo $p->password; ?></td>
                                 <td><?php echo $p->nama; ?></td>
                                 <td><?php echo $p->level; ?></td>
-                                <td><center><button class="btn btn-icon waves-effect waves-light btn-warning" data-toggle="modal" data-target="#ubahpassword<?php echo $p->username; ?>"> <i class="glyphicon glyphicon-lock"></i> </button>|<a href="<?=base_url('DataPenggunaController/hapus_data/'.$p->username);?>" onclick="return confirm('Anda Yakin Menghapus Data?')"><button class="btn btn-icon waves-effect waves-light btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></a></center>
+                                <td><center>
+                                    <button id="editButton" class="btn btn-icon waves-effect waves-light btn-warning editButton" data-toggle="modal" data-target="#ubahpassword" data-username="<?= $p->username ?>"> <i class="glyphicon glyphicon-lock"></i> </button>
+                                    |
+                                    <a href="<?=base_url('DataPenggunaController/hapus_data/'.$p->username);?>" onclick="return confirm('Anda Yakin Menghapus Data?')"><button class="btn btn-icon waves-effect waves-light btn-danger"> <i class="glyphicon glyphicon-trash"></i> </button></a></center>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -53,10 +56,8 @@
       © 2019 Kerja Praktek Muhammad Fadhli
     </footer>
 </div>
-<!-- ============================================================== -->
-<!-- End Right content here -->
-<!-- ============================================================== -->
-<!-- sample modal content -->
+
+<!-- Modal Tambah Pengguna -->
 <div id="tambahpengguna" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -89,8 +90,8 @@
                     <div class="col-sm-7">
                         <select id="level" class="form-control select1" name="level" required>
                             <option value="">Pilih Hak Akses</option>
-                            <option>1</option>
-                            <option>2</option>
+                            <option>Admin</option>
+                            <option>Staff</option>
                         </select>
                     </div>
                 </div>
@@ -108,9 +109,8 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<!-- sample modal content -->
-<?php foreach($pengguna as $p){ ?>
-<div id="ubahpassword<?php echo $p->username; ?>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Model Edit Pengguna -->
+<div id="ubahpassword" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,14 +122,14 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label">Password Baru</label>
                     <div class="col-md-7">
-                         <input type="hidden" class="form-control" name="username" value="<?php echo $p->username; ?>"  required="" >
-                        <input type="text" id="pass1" class="form-control" name="password">
+                        <input id="editUsername" type="hidden" class="form-control" name="username" value=""  required="" >
+                        <input type="text" id="editPassword" class="form-control" name="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-4 control-label">Konfirmasi Password Baru</label>
                     <div class="col-md-7">
-                        <input data-parsley-equalto="#pass1" type="password" required placeholder="Password" class="form-control" id="passWord2">
+                        <input id="editPassword2" data-parsley-equalto="#editPassword" type="password" required placeholder="Password" class="form-control">
                     </div>
                 </div>
             </div>
@@ -144,5 +144,13 @@
             </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<?php } ?>
+</div>
+
+<script type="text/javascript">
+    window.onload = function(){
+        $('.editButton').on('click', function(){
+            var username = $(this).data('username');
+            $('#editUsername').val(username);
+        });
+    }
+</script>
