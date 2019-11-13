@@ -15,18 +15,171 @@ class PendaftaranUmrohController extends CI_Controller {
 
 	public function index() {
 		$data_paket = $this->Paket->get('Umroh');
-
 		$this->template->load('static','PendaftaranUmrohView', ['data_paket' => $data_paket]);
 	}
 
-	public function dataJamaah($id_paket){
-		$data_jamaah = $this->DaftarJamaah->get($id_paket);
-
-		$this->template->load('static','JamaahUmrohView',['data_jamaah'=>$data_jamaah]);
+	public function dataJamaah($id){
+		$data['id_paket']=$id;
+		$data['data_jamaah'] = $this->DaftarJamaah->get($id);
+		$this->template->load('static','JamaahUmrohView',$data);
 	}
 
-	public function daftarJamaah(){
-		$this->template->load('static','DaftarJamaahUmrohView');
+	public function daftarJamaah($id){
+		$data['id_paket']=$id;
+		$this->template->load('static','DaftarJamaahUmrohView',$data);
+	}
+
+	public function hapus($id){
+		$alihkan = 'PendaftaranUmrohController';
+		$where = array('id_daftar_jamaah' => $id);
+		$this->DaftarJamaah->hapus_data($where);
+		redirect($alihkan);
+	}	
+
+	public function tambah_data($id=null){
+
+		$id_paket = $id;
+		$nama = $this->input->post('nama');
+		$noktp = $this->input->post('noktp');
+		$tempatlahir = $this->input->post('tempatlahir');
+		$tanggallahir = $this->input->post('tanggallahir');
+		$jk = $this->input->post('jk');
+		$sp = $this->input->post('sp');
+		$alamat = $this->input->post('alamat');
+		$kelurahan = $this->input->post('kelurahan');
+		$kecamatan = $this->input->post('kecamatan');
+		$kota = $this->input->post('kota');
+		$nohp = $this->input->post('nohp');
+		$email = $this->input->post('email');
+		$pekerjaan = $this->input->post('pekerjaan');
+		$ahliwaris = $this->input->post('ahliwaris');
+		$nohpahliwaris = $this->input->post('nohpahliwaris');
+		$referensi = $this->input->post('referensi');
+		$pembayaran = $this->input->post('pembayaran');
+		$dp = $this->input->post('dp');
+
+		$uploadktp = $this->uploadktp();
+		$uploadkk = $this->uploadkK();
+		$uploadbukunikah = $this->uploadbukunikah();
+		$uploadpaspor = $this->uploadpaspor();
+		$uploadvaksin = $this->uploadvaksin();
+		
+		$ktp = $uploadktp['file']['file_name'];
+		$kk = $uploadkk['file']['file_name'];
+		$bukunikah = $uploadbukunikah['file']['file_name'];
+		$paspor = $uploadpaspor['file']['file_name'];
+		$vaksin = $uploadvaksin['file']['file_name'];
+
+		$data = array(
+			'nama_lengkap' => $nama,
+			'id_paket' => $id_paket,
+			'no_ktp' => $noktp, 
+			'tempat_lahir' => $tempatlahir, 
+			'tanggal_lahir' => $tanggallahir,
+			'jenis_kelamin' => $jk,
+			'status_perkawinan' => $sp,
+			'alamat' => $alamat, 
+			'kelurahan' => $kelurahan, 
+			'kecamatan' => $kecamatan,
+			'kabupaten/kota' => $kota,
+			'no_hp' => $nohp,
+			'email' => $email, 
+			'pekerjaan' => $pekerjaan, 
+			'ahli_waris' => $ahliwaris,
+			'no_hp_ahli_waris' => $nohpahliwaris,
+			'referensi' => $referensi,
+			'jenis_pembayaran' => $pembayaran, 
+			'dp' => $dp, 
+			'foto_ktp' => $ktp,
+			'foto_kk' => $kk,
+			'foto_buku_nikah' => $bukunikah,
+			'foto_paspor' => $paspor, 
+			'foto_vaksin' => $vaksin
+			);
+		//print_r($data);exit();
+		$this->DaftarJamaah->tambah_data($data);
+
+		redirect('PendaftaranUmrohController');
+	}
+
+	public function uploadktp(){
+		$config['upload_path'] = 'assets/images/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = '2048';
+		$config['remove_space'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if ($this->upload->do_upload('ktp')) {
+			$return = array('result' => 'success','file' => $this->upload->data(),'error'=>'');
+			return $return;
+		}else{
+			$return = array('result' => 'failed','file' => '','error'=>$this->upload->display_errors());
+			return $return;
+		}
+	}
+
+	public function uploadkk(){
+		$config['upload_path'] = 'assets/images/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = '2048';
+		$config['remove_space'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if ($this->upload->do_upload('kk')) {
+			$return = array('result' => 'success','file' => $this->upload->data(),'error'=>'');
+			return $return;
+		}else{
+			$return = array('result' => 'failed','file' => '','error'=>$this->upload->display_errors());
+			return $return;
+		}
+	}
+
+	public function uploadbukunikah(){
+		$config['upload_path'] = 'assets/images/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = '2048';
+		$config['remove_space'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if ($this->upload->do_upload('bukunikah')) {
+			$return = array('result' => 'success','file' => $this->upload->data(),'error'=>'');
+			return $return;
+		}else{
+			$return = array('result' => 'failed','file' => '','error'=>$this->upload->display_errors());
+			return $return;
+		}
+	}
+
+	public function uploadpaspor(){
+		$config['upload_path'] = 'assets/images/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = '2048';
+		$config['remove_space'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if ($this->upload->do_upload('paspor')) {
+			$return = array('result' => 'success','file' => $this->upload->data(),'error'=>'');
+			return $return;
+		}else{
+			$return = array('result' => 'failed','file' => '','error'=>$this->upload->display_errors());
+			return $return;
+		}
+	}
+
+	public function uploadvaksin(){
+		$config['upload_path'] = 'assets/images/';
+		$config['allowed_types'] = 'jpg|png|jpeg';
+		$config['max_size'] = '2048';
+		$config['remove_space'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if ($this->upload->do_upload('vaksin')) {
+			$return = array('result' => 'success','file' => $this->upload->data(),'error'=>'');
+			return $return;
+		}else{
+			$return = array('result' => 'failed','file' => '','error'=>$this->upload->display_errors());
+			return $return;
+		}
 	}
 
 }

@@ -17,17 +17,17 @@ class DaftarJamaah extends CI_Model {
 	}
 
     public function tambah_data($data){
-		$this->db->insert('paket', $data);
+		$this->db->insert('daftar_jamaah', $data);
 	}
 
     public function ubah_data($where, $data){
 		$this->db->where($where);
-		return $this->db->update('paket', $data);
+		return $this->db->update('daftar_jamaah', $data);
 	}
 
-	public function hapus_data($id_paket){
-		$this->db->where($id_paket);
-		$this->db->delete('paket');
+	public function hapus_data($id_daftar){
+		$this->db->where($id_daftar);
+		$this->db->delete('daftar_jamaah');
 	}
 
 }

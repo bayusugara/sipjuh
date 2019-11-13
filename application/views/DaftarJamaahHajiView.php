@@ -12,7 +12,7 @@
                         <h4 class="page-title"><b>Daftar Baru Jamaah Haji</b></h4>
                         <hr>
 
-                        <form class="form-horizontal" role="form" action="#" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
+                        <form class="form-horizontal" role="form" action="<?=base_url('PendaftaranHajiController/tambah_data/'.$id_paket);?>" method="POST" enctype="multipart/form-data" data-parsley-validate novalidate>
 
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Nama Lengkap</label>
@@ -42,11 +42,11 @@
                                 <label class="col-sm-2 control-label">Jenis Kelamin</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-success radio-inline">
-                                        <input type="radio" id="jk1" value="L" name="jk">
+                                        <input type="radio" id="jk1" value="Laki-Laki" name="jk">
                                         <label for="jk1"> Laki-Laki </label>
                                     </div>
                                     <div class="radio radio-pink radio-inline">
-                                        <input type="radio" id="jk2" value="P" name="jk">
+                                        <input type="radio" id="jk2" value="Perempuan" name="jk">
                                         <label for="jk2"> Perempuan </label>
                                     </div>
                                 </div>
@@ -55,11 +55,11 @@
                                 <label class="col-sm-2 control-label">Status Perkawinan</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-primary radio-inline">
-                                        <input type="radio" id="sp1" value="sm" name="sp">
+                                        <input type="radio" id="sp1" value="Menikah" name="sp">
                                         <label for="sp1"> Menikah </label>
                                     </div>
                                     <div class="radio radio-danger radio-inline">
-                                        <input type="radio" id="sp2" value="bm" name="sp">
+                                        <input type="radio" id="sp2" value="Belum Menikah" name="sp">
                                         <label for="sp2"> Belum Menikah </label>
                                     </div>
                                 </div>
@@ -128,11 +128,11 @@
                                 <label class="col-sm-2 control-label">Pembayaran</label>
                                 <div class="col-sm-10">
                                     <div class="radio radio-custom radio-inline">
-                                        <input type="radio" id="p1" value="c" name="pembayaran">
+                                        <input type="radio" id="p1" value="Cash" name="pembayaran">
                                         <label for="p1"> Cash </label>
                                     </div>
                                     <div class="radio radio-warning radio-inline">
-                                        <input type="radio" id="p2" value="p" name="pembayaran">
+                                        <input type="radio" id="p2" value="Pembiayaan" name="pembayaran">
                                         <label for="p2"> Pembiayaan </label>
                                     </div>
                                 </div>

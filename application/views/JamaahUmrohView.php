@@ -1,6 +1,9 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
 <!-- ============================================================== -->
+<?php
+    $nama_bulan = array('01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember');
+?>
 <div class="content-page">
     <!-- Start content -->
     <div class="content">
@@ -13,7 +16,7 @@
                     <hr>
                 </div>
                 <div class="card-box">
-                    <a href="<?=base_url('PendaftaranUmrohController/daftarJamaah');?>" ><button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#daftarbaru"><i class="fa fa-plus m-r-5"></i> <span> Daftar Baru </span></button></a>
+                    <a href="<?=base_url('PendaftaranUmrohController/daftarJamaah/'.$id_paket);?>" ><button type="button" class="btn btn-success waves-effect waves-light" data-toggle="modal" data-target="#daftarbaru"><i class="fa fa-plus m-r-5"></i> <span> Daftar Baru </span></button></a>
                         <br><br>
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
@@ -28,16 +31,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <?php $no = 1;
-                            foreach($data_jamaah as $dj){ ?>
+                            <?php
+                                $no = 1;
+                                foreach ($data_jamaah as $key => $value) { 
+                                    $tgl_lahir['tanggal'] = substr($value->tanggal_lahir, 8,2);
+                                    $tgl_lahir['bulan'] = $nama_bulan[substr($value->tanggal_lahir, 5,2)];
+                                    $tgl_lahir['tahun'] = substr($value->tanggal_lahir, 0,4);
+                                ?>
                             <tr>
                                 <td><?php echo $no++; ?></td>
-                                <td><?php echo $dj->nama_lengkap; ?></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><center><a href="#" onclick="return confirm('Anda Yakin Menghapus Data?')"><button class="btn btn-icon waves-effect waves-light btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button></a></center>
+                                <td><?php echo $value->nama_lengkap; ?></td>
+                                <td><?= $value->no_ktp;?></td>
+                                <td><?= $value->tempat_lahir.', '.implode(' ', $tgl_lahir)?></td>
+                                <td><?= $value->jenis_kelamin;?></td>
+                                <td><?= $value->status_perkawinan;?></td>
+                                <td><center><a href="<?=base_url('PendaftaranUmrohController/hapus/'.$value->id_daftar_jamaah);?>" onclick="return confirm('Anda Yakin Menghapus Data?')"><button class="btn btn-icon waves-effect waves-light btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button></a></center>
                                 </td>
                             </tr>
                             <?php } ?>

@@ -1,6 +1,9 @@
 <!-- ============================================================== -->
 <!-- Start right Content here -->
-<!-- ============================================================== -->
+
+<?php
+    $nama_bulan = array('01' => 'Januari', '02' => 'Februari', '03' => 'Maret', '04' => 'April', '05' => 'Mei', '06' => 'Juni', '07' => 'Juli', '08' => 'Agustus', '09' => 'September', '10' => 'Oktober', '11' => 'November', '12' => 'Desember');
+?><!-- ============================================================== -->
 <div class="content-page">
     <!-- Start content -->
     <div class="content">
@@ -17,65 +20,29 @@
             <div class="card-box">
                 <!-- mulai wiget -->
                 <div class="row">
-                    <a href="<?=base_url('PendaftaranHajiController/dataJamaah');?>">
+                    <?php foreach ($data_paket as $dp){ 
+                        $biaya = number_format($dp->biaya,0,",",".");
+                        $tgl_keberangkatan['tanggal'] = substr($dp->tanggal_keberangkatan, 8,2);
+                        $tgl_keberangkatan['bulan'] = $nama_bulan[substr($dp->tanggal_keberangkatan, 5,2)];
+                        $tgl_keberangkatan['tahun'] = substr($dp->tanggal_keberangkatan, 0,4);
+                    ?>
+                    <a href="<?=base_url('PendaftaranHajiController/dataJamaah/'.$dp->id_paket);?>">
                     <div class="col-sm-6 col-md-6 col-lg-3">
                         <div class="widget-bg-color-icon card-box ">
                             <div class="text-center">
-                                <h3 class="text-custom"><b>Program 11 Hari</b></h3>
+                                <h3 class="text-custom"><b>Program <?=$dp->program;?></b></h3>
                                 <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 24jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Januari 2020</p>
+                                <p class="text-muted"><?=$dp->fasilitas;?></p>
+                                <p class="text-dark"><b>Biaya:</b></p>
+                                <p class="text-muted"><?='Rp. '.$biaya.',00';?></p>
+                                <p class="text-dark"><b>Waktu Keberangkatan:</b></p>
+                                <p class="text-muted"><?= implode(' ', $tgl_keberangkatan)?></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     </a>
-                    
-                    <a href="##">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 12 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 28jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Februari 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
-                    
-                    <a href="###">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 13 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 34jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Maret 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
-                    
-                    <a href="####">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 14 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 38jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 April 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
+                    <?php } ?>
                 </div>
                 <!-- akhir wiget -->
 

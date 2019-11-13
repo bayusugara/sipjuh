@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class DataPenggunaController extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
-		$this->load->library('encrypt');
 		$this->load->model('Pengguna');
 
 		if($this->session->userdata('isLogin') != TRUE){
