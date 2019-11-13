@@ -28,9 +28,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                            <?php $no = 1;
+                            foreach($data_jamaah as $dj){ ?>
                             <tr>
-                                <td></td>
-                                <td></td>
+                                <td><?php echo $no++; ?></td>
+                                <td><?php echo $dj->nama_lengkap; ?></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -38,6 +40,7 @@
                                 <td><center><a href="#" onclick="return confirm('Anda Yakin Menghapus Data?')"><button class="btn btn-icon waves-effect waves-light btn-danger"> <i class="glyphicon glyphicon-remove"></i> </button></a></center>
                                 </td>
                             </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

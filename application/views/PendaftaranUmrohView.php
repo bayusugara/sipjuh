@@ -17,65 +17,23 @@
             <div class="card-box">
                 <!-- mulai wiget -->
                 <div class="row">
-                    <a href="<?=base_url('PendaftaranUmrohController/dataJamaah');?>">
+                    <?php
+                    foreach($data_paket as $dp){ ?>
+                    <a href="<?=base_url('PendaftaranUmrohController/dataJamaah/'.$dp->id_paket);?>">
                     <div class="col-sm-6 col-md-6 col-lg-3">
                         <div class="widget-bg-color-icon card-box ">
                             <div class="text-center">
-                                <h3 class="text-custom"><b>Program 11 Hari</b></h3>
+                                <h3 class="text-custom"><b>Program <?php echo $dp->program; ?></b></h3>
                                 <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 24jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Januari 2020</p>
+                                <p class="text-muted"><?php echo $dp->program; ?></p>
+                                <p class="text-muted">Biaya <?php echo $dp->fasilitas; ?> Rupiah</p>
+                                <p class="text-muted">Waktu keberangkatan <?php echo $dp->tanggal_keberangkatan; ?></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                     </a>
-                    
-                    <a href="##">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 12 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 28jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Februari 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
-                    
-                    <a href="###">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 13 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 34jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 Maret 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
-                    
-                    <a href="####">
-                    <div class="col-sm-6 col-md-6 col-lg-3">
-                        <div class="widget-bg-color-icon card-box ">
-                            <div class="text-center">
-                                <h3 class="text-custom"><b>Program 14 Hari</b></h3>
-                                <p class="text-dark"><b>Fasilitas:</b></p>
-                                <p class="text-muted">Hotel Bintang 4/5</p>
-                                <p class="text-muted">Biaya 38jt Rupiah</p>
-                                <p class="text-muted">Waktu keberangkatan 1 April 2020</p>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                    </a>
+                    <?php } ?>
                 </div>
                 <!-- akhir wiget -->
 

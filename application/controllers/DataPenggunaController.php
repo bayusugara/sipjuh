@@ -5,7 +5,7 @@ class DataPenggunaController extends CI_Controller {
 	public function __construct() {
 		parent:: __construct();
 		$this->load->library('encrypt');
-		$this->load->model('ModelPengguna');
+		$this->load->model('Pengguna');
 
 		if($this->session->userdata('isLogin') != TRUE){
 		   redirect('LoginController/logout');
@@ -13,7 +13,7 @@ class DataPenggunaController extends CI_Controller {
 	}
 
 	public function index() {
-		$pengguna = $this->ModelPengguna->tampil_data()->result();
+		$pengguna = $this->Pengguna->tampil_data()->result();
 
 		$data = array ('pengguna' => $pengguna);
 
@@ -29,7 +29,7 @@ class DataPenggunaController extends CI_Controller {
 
 		$data = array('username' => $username, 'password' => md5($password), 'nama' => $nama, 'level' => $level);
 		//print_r($data1);exit();
-		$this->ModelPengguna->tambah_data($data, 'pengguna');
+		$this->Pengguna->tambah_data($data, 'pengguna');
 
 		redirect('DataPenggunaController');
 	}
@@ -42,7 +42,7 @@ class DataPenggunaController extends CI_Controller {
 
 		$data = array('username' => $username, 'password' => md5($password));
 
-		$this->ModelPengguna->ubah_password($where, $data, 'pengguna');
+		$this->Pengguna->ubah_password($where, $data, 'pengguna');
 
 		redirect('DataPenggunaController');
 
@@ -50,7 +50,7 @@ class DataPenggunaController extends CI_Controller {
 
 	public function hapus_data($username) {
 		//$username = array('username' => $username);
-		$this->ModelPengguna->hapus_data(['username' => $username], 'pengguna');
+		$this->Pengguna->hapus_data(['username' => $username], 'pengguna');
 
 		redirect('DataPenggunaController');
 	}

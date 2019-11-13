@@ -4,7 +4,7 @@ class LoginController extends CI_Controller{
 
 	public function __construct(){ //untuk load model
 		parent::__construct();		
-		$this->load->model('ModelPengguna');
+		$this->load->model('Pengguna');
 	}
 
 	public function index(){ //fungsi index yang dijalankan pertama kali
@@ -14,7 +14,7 @@ class LoginController extends CI_Controller{
 	public function cekLogin(){ //
 		$where = array('username' => $this->input->post('username', TRUE),
 						'password' => md5($this->input->post('password', TRUE)));
-		$cek = $this->ModelPengguna->validasi($where);
+		$cek = $this->Pengguna->validasi($where);
 		if($cek->num_rows() == 1){
 			foreach($cek->result() as $a ){
 
