@@ -100,7 +100,7 @@ class PendaftaranHajiController extends CI_Controller {
 
 		redirect('PendaftaranHajiController');
 	}
-
+	// upload KTP
 	public function uploadktp(){
 		$config['upload_path'] = 'assets/images/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
@@ -116,7 +116,7 @@ class PendaftaranHajiController extends CI_Controller {
 			return $return;
 		}
 	}
-
+	// upload KK
 	public function uploadkk(){
 		$config['upload_path'] = 'assets/images/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
@@ -132,7 +132,7 @@ class PendaftaranHajiController extends CI_Controller {
 			return $return;
 		}
 	}
-
+	// upload Buku Nikah
 	public function uploadbukunikah(){
 		$config['upload_path'] = 'assets/images/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
@@ -148,7 +148,7 @@ class PendaftaranHajiController extends CI_Controller {
 			return $return;
 		}
 	}
-
+	// upload Paspor
 	public function uploadpaspor(){
 		$config['upload_path'] = 'assets/images/';
 		$config['allowed_types'] = 'jpg|png|jpeg';
@@ -164,7 +164,7 @@ class PendaftaranHajiController extends CI_Controller {
 			return $return;
 		}
 	}
-
+	// upload Vaksin
 	public function uploadvaksin(){
 		$config['upload_path'] = 'assets/images/';
 		$config['allowed_types'] = 'jpg|png|jpeg';

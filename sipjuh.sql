@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `daftar_jamaah`
 --
-
+/*test*/
 CREATE TABLE `daftar_jamaah` (
   `id_daftar_jamaah` int(11) NOT NULL,
   `id_paket` int(11) NOT NULL,
